@@ -1,0 +1,42 @@
+import { TabuGame } from './game.js';
+import { UI } from './ui.js';
+
+class App {
+  static async start() {
+    try {
+      // 1. Pobieranie danych
+      const response = await fetch('./data/cards.json');
+      const cards = await response.json();
+
+      // 2. Inicjalizacja gry
+      const game = new TabuGame(cards);
+
+      // 3. Pierwsze wyrenderowanie
+      UI.renderCard(game.getCurrentCard());
+      UI.updateScore(game.score);
+
+      // 4. Podpięcie zdarzeń przycisków
+      document.getElementById('btn-correct').addEventListener('click', () => {
+        game.addPoint();
+        UI.updateScore(game.score);
+        UI.renderCard(game.nextCard());
+      });
+
+      document.getElementById('btn-wrong').addEventListener('click', () => {
+        game.subtractPoint();
+        UI.updateScore(game.score);
+        UI.renderCard(game.nextCard());
+      });
+
+      document.getElementById('btn-skip').addEventListener('click', () => {
+        UI.renderCard(game.nextCard());
+      });
+
+    } catch (error) {
+      console.error('Błąd podczas uruchamiania gry:', error);
+    }
+  }
+}
+
+// Uruchomienie aplikacji po załadowaniu drzewa DOM
+document.addEventListener('DOMContentLoaded', () => App.start());
