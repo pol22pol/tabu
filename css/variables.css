@@ -1,0 +1,10 @@
+/* css/variables.css */
+:root {
+  --primary-color: #6c5ce7;
+  --danger-color: #ff7675;
+  --success-color: #00b894;
+  --bg-color: #f8f9fa;
+  --card-bg: #ffffff;
+  --radius: 16px;
+  --font-family: 'Inter', sans-serif;
+}
