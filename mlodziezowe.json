@@ -1,0 +1,302 @@
+[
+  {
+    "word": "Snapchat",
+    "forbidden": ["zdjęcie", "filtr", "aplikacja", "znikające", "wiadomość"]
+  },
+  {
+    "word": "BeReal",
+    "forbidden": ["aplikacja", "zdjęcie", "codziennie", "telefon", "prawdziwy"]
+  },
+  {
+    "word": "Spotify",
+    "forbidden": ["muzyka", "piosenka", "playlista", "słuchać", "aplikacja"]
+  },
+  {
+    "word": "Playlista",
+    "forbidden": ["muzyka", "utwory", "Spotify", "lista", "piosenki"]
+  },
+  {
+    "word": "Autotune",
+    "forbidden": ["śpiew", "głos", "muzyka", "efekt", "rap"]
+  },
+  {
+    "word": "Rap",
+    "forbidden": ["muzyka", "rym", "hip-hop", "tekst", "artysta"]
+  },
+  {
+    "word": "Koncert",
+    "forbidden": ["muzyka", "scena", "artysta", "publiczność", "bilet"]
+  },
+  {
+    "word": "Festiwal",
+    "forbidden": ["muzyka", "lato", "koncert", "tłum", "wydarzenie"]
+  },
+  {
+    "word": "Outfit",
+    "forbidden": ["ubranie", "styl", "moda", "strój", "wygląd"]
+  },
+  {
+    "word": "Sneakersy",
+    "forbidden": ["buty", "sportowe", "Nike", "Adidas", "nogi"]
+  },
+  {
+    "word": "Streetwear",
+    "forbidden": ["moda", "ulica", "ubrania", "styl", "luźny"]
+  },
+  {
+    "word": "Vintage",
+    "forbidden": ["stary", "retro", "moda", "dawny", "rzeczy"]
+  },
+  {
+    "word": "Second hand",
+    "forbidden": ["ubrania", "używane", "sklep", "ciuchy", "zakupy"]
+  },
+  {
+    "word": "Drip",
+    "forbidden": ["styl", "ubranie", "wygląd", "moda", "kozacki"]
+  },
+  {
+    "word": "Fit",
+    "forbidden": ["siłownia", "ćwiczenia", "forma", "zdrowie", "ciało"]
+  },
+  {
+    "word": "Siłownia",
+    "forbidden": ["ćwiczyć", "ciężary", "mięśnie", "trening", "sztanga"]
+  },
+  {
+    "word": "Influencerka",
+    "forbidden": ["kobieta", "internet", "Instagram", "obserwujący", "reklamy"]
+  },
+  {
+    "word": "Obserwujący",
+    "forbidden": ["followers", "konto", "internet", "ludzie", "profil"]
+  },
+  {
+    "word": "Follow",
+    "forbidden": ["obserwować", "konto", "kliknąć", "Instagram", "subskrypcja"]
+  },
+  {
+    "word": "Like",
+    "forbidden": ["lubię", "serce", "kliknięcie", "Instagram", "reakcja"]
+  },
+  {
+    "word": "Komentarz",
+    "forbidden": ["opinia", "tekst", "post", "odpowiedź", "internet"]
+  },
+  {
+    "word": "DM",
+    "forbidden": ["wiadomość", "prywatna", "Instagram", "napisać", "czat"]
+  },
+  {
+    "word": "Avatar",
+    "forbidden": ["postać", "profil", "obrazek", "gra", "internet"]
+  },
+  {
+    "word": "Nickname",
+    "forbidden": ["pseudonim", "nazwa", "login", "gracz", "konto"]
+  },
+  {
+    "word": "Login",
+    "forbidden": ["hasło", "konto", "nazwa", "wpisać", "internet"]
+  },
+  {
+    "word": "Hasło",
+    "forbidden": ["kod", "konto", "logowanie", "tajne", "litery"]
+  },
+  {
+    "word": "Update",
+    "forbidden": ["aktualizacja", "nowa wersja", "program", "zmiana", "gra"]
+  },
+  {
+    "word": "Bug",
+    "forbidden": ["błąd", "gra", "program", "problem", "naprawa"]
+  },
+  {
+    "word": "Lag",
+    "forbidden": ["opóźnienie", "internet", "gra", "ping", "zawieszenie"]
+  },
+  {
+    "word": "Ping",
+    "forbidden": ["internet", "opóźnienie", "gra", "serwer", "ms"]
+  },
+  {
+    "word": "NPC",
+    "forbidden": ["postać", "gra", "komputer", "bohater", "sterowany"]
+  },
+  {
+    "word": "Skin",
+    "forbidden": ["wygląd", "postać", "gra", "ubranie", "zmiana"]
+  },
+  {
+    "word": "Loot",
+    "forbidden": ["przedmiot", "gra", "znaleźć", "nagroda", "skrzynka"]
+  },
+  {
+    "word": "Level",
+    "forbidden": ["poziom", "gra", "awans", "doświadczenie", "postać"]
+  },
+  {
+    "word": "Boss",
+    "forbidden": ["przeciwnik", "gra", "silny", "walka", "pokonać"]
+  },
+  {
+    "word": "Speedrun",
+    "forbidden": ["szybko", "gra", "czas", "ukończyć", "rekord"]
+  },
+  {
+    "word": "Cosplay",
+    "forbidden": ["kostium", "postać", "przebranie", "anime", "konwent"]
+  },
+  {
+    "word": "Anime",
+    "forbidden": ["japoński", "bajka", "serial", "manga", "rysunek"]
+  },
+  {
+    "word": "Manga",
+    "forbidden": ["komiks", "Japonia", "czytać", "anime", "książka"]
+  },
+  {
+    "word": "K-pop",
+    "forbidden": ["Korea", "muzyka", "zespół", "idol", "taniec"]
+  },
+  {
+    "word": "Fanbase",
+    "forbidden": ["fani", "grupa", "artysta", "społeczność", "idol"]
+  },
+  {
+    "word": "Fandom",
+    "forbidden": ["fani", "społeczność", "film", "seria", "grupa"]
+  },
+  {
+    "word": "Społeczność",
+    "forbidden": ["ludzie", "grupa", "internet", "razem", "fani"]
+  },
+  {
+    "word": "Memiarz",
+    "forbidden": ["memy", "internet", "żarty", "twórca", "śmieszne"]
+  },
+  {
+    "word": "Żabka",
+    "forbidden": ["sklep", "hot dog", "zielona", "zakupy", "automat"]
+  },
+  {
+    "word": "Energetyk",
+    "forbidden": ["napój", "kofeina", "puszka", "pić", "Red Bull"]
+  },
+  {
+    "word": "Bubble tea",
+    "forbidden": ["napój", "kulki", "herbata", "słodki", "kubek"]
+  },
+  {
+    "word": "Ramen",
+    "forbidden": ["zupa", "makaron", "Japonia", "jedzenie", "bulion"]
+  },
+  {
+    "word": "Burger",
+    "forbidden": ["bułka", "mięso", "fast food", "frytki", "jedzenie"]
+  },
+  {
+    "word": "Pizza",
+    "forbidden": ["ser", "włoska", "ciasto", "sos", "okrągła"]
+  },
+  {
+    "word": "Kebab",
+    "forbidden": ["mięso", "bułka", "sos", "fast food", "tortilla"]
+  },
+  {
+    "word": "Memiczny",
+    "forbidden": ["śmieszny", "meme", "internet", "dziwny", "żart"]
+  },
+  {
+    "word": "Sigma",
+    "forbidden": ["młodzieżowe", "samotny", "trend", "internet", "alpha"]
+  },
+  {
+    "word": "Alpha",
+    "forbidden": ["lider", "silny", "najlepszy", "samiec", "sigma"]
+  },
+  {
+    "word": "Rizz",
+    "forbidden": ["podryw", "urok", "dziewczyna", "charyzma", "flirt"]
+  },
+  {
+    "word": "Sus",
+    "forbidden": ["podejrzany", "Among Us", "dziwny", "kłamstwo", "gracz"]
+  },
+  {
+    "word": "Among Us",
+    "forbidden": ["statek", "zdrajca", "gra", "kosmita", "zadanie"]
+  },
+  {
+    "word": "Beka",
+    "forbidden": ["śmiech", "żart", "śmieszne", "radość", "kawał"]
+  },
+  {
+    "word": "XD",
+    "forbidden": ["śmiech", "emotikon", "internet", "mina", "żart"]
+  },
+  {
+    "word": "Masakra",
+    "forbidden": ["dużo", "szok", "źle", "wow", "problem"]
+  },
+  {
+    "word": "Sztos",
+    "forbidden": ["świetny", "super", "dobry", "fajny", "ocena"]
+  },
+  {
+    "word": "Git",
+    "forbidden": ["dobrze", "super", "okej", "fajnie", "spoko"]
+  },
+  {
+    "word": "Rel",
+    "forbidden": ["zgadzam", "prawda", "dokładnie", "czuję", "sytuacja"]
+  },
+  {
+    "word": "NPC energy",
+    "forbidden": ["zachowanie", "człowiek", "gra", "dziwny", "postać"]
+  },
+  {
+    "word": "Afera",
+    "forbidden": ["drama", "problem", "internet", "kłótnia", "wydarzenie"]
+  },
+  {
+    "word": "Drama",
+    "forbidden": ["konflikt", "kłótnia", "internet", "problem", "osoby"]
+  },
+  {
+    "word": "Anulować",
+    "forbidden": ["cancel", "usunąć", "krytyka", "osoba", "internet"]
+  },
+  {
+    "word": "Randomowy",
+    "forbidden": ["losowy", "przypadkowy", "dziwny", "wybór", "bez sensu"]
+  },
+  {
+    "word": "Ziom",
+    "forbidden": ["kolega", "przyjaciel", "osoba", "człowiek", "znajomy"]
+  },
+  {
+    "word": "Relacja",
+    "forbidden": ["związek", "osoba", "kontakt", "para", "uczucia"]
+  },
+  {
+    "word": "Crush",
+    "forbidden": ["osoba", "podobać", "miłość", "sympatia", "zauroczenie"]
+  },
+  {
+    "word": "Ghosting",
+    "forbidden": ["kontakt", "ignorować", "wiadomość", "osoba", "zniknąć"]
+  },
+  {
+    "word": "Friendzone",
+    "forbidden": ["kolega", "miłość", "uczucie", "relacja", "podobać"]
+  },
+  {
+    "word": "Self-care",
+    "forbidden": ["dbanie", "siebie", "odpoczynek", "zdrowie", "relaks"]
+  },
+  {
+    "word": "Mindset",
+    "forbidden": ["myślenie", "nastawienie", "głowa", "sukces", "podejście"]
+  }
+]
