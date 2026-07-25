@@ -1,0 +1,5 @@
+[
+  { "word": "Kino", "taboo": ["Film", "Popcorn", "Ekran", "Bilety", "Aktor"] },
+  { "word": "Batman", "taboo": ["Bohater", "Joker", "Nietoperz", "Gotham", "Płaszcz"] },
+  { "word": "Netflix", "taboo": ["Serial", "Film", "Streaming", "Konto", "Oglądać"] }
+]

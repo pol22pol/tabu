@@ -1,0 +1,5 @@
+[
+  { "word": "Kawa", "taboo": ["Napój", "Kofeina", "Filiżanka", "Czarna", "Ziarna"] },
+  { "word": "Plaża", "taboo": ["Piasek", "Morze", "Słońce", "Wakacje", "Ręcznik"] },
+  { "word": "Książka", "taboo": ["Czytać", "Strony", "Okładka", "Autor", "Biblioteka"] }
+]
