@@ -1,0 +1,31 @@
+export class TabuGame {
+  constructor(cards) {
+    this.cards = cards;
+    this.score = 0;
+    this.currentIndex = 0;
+  }
+
+  getCurrentCard() {
+    if (!this.cards || this.cards.length === 0) return null;
+    return this.cards[this.currentIndex];
+  }
+
+  nextCard() {
+    if (this.cards.length === 0) return null;
+    this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+    return this.getCurrentCard();
+  }
+
+  addPoint() {
+    this.score += 1;
+  }
+
+  subtractPoint() {
+    this.score -= 1;
+  }
+
+  reset() {
+    this.score = 0;
+    this.currentIndex = 0;
+  }
+}
