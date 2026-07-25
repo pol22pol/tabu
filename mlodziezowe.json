@@ -1,5 +1,125 @@
 [
   {
+    "word": "TikTok",
+    "forbidden": ["filmiki", "aplikacja", "tańce", "rolki", "telefon"]
+  },
+  {
+    "word": "Instagram",
+    "forbidden": ["zdjęcia", "social media", "lajki", "stories", "profil"]
+  },
+  {
+    "word": "Influencer",
+    "forbidden": ["internet", "popularny", "obserwujący", "YouTube", "twórca"]
+  },
+  {
+    "word": "Selfie",
+    "forbidden": ["zdjęcie", "telefon", "twarz", "aparat", "lustro"]
+  },
+  {
+    "word": "Hashtag",
+    "forbidden": ["kratka", "tag", "Instagram", "słowo", "oznaczenie"]
+  },
+  {
+    "word": "Meme",
+    "forbidden": ["obrazek", "internet", "śmieszny", "tekst", "żart"]
+  },
+  {
+    "word": "Discord",
+    "forbidden": ["serwer", "czat", "gracze", "rozmowa", "aplikacja"]
+  },
+  {
+    "word": "Streamer",
+    "forbidden": ["transmisja", "gry", "kamera", "internet", "live"]
+  },
+  {
+    "word": "Gaming",
+    "forbidden": ["gry", "komputer", "granie", "konsola", "pad"]
+  },
+  {
+    "word": "Minecraft",
+    "forbidden": ["klocki", "budowanie", "gra", "Steve", "świat"]
+  },
+  {
+    "word": "Fortnite",
+    "forbidden": ["gra", "budowanie", "Battle Royale", "Epic", "skin"]
+  },
+  {
+    "word": "PlayStation",
+    "forbidden": ["konsola", "Sony", "gry", "pad", "PS"]
+  },
+  {
+    "word": "Xbox",
+    "forbidden": ["Microsoft", "konsola", "gry", "pad", "Game Pass"]
+  },
+  {
+    "word": "Smartfon",
+    "forbidden": ["telefon", "ekran", "aplikacje", "dotyk", "internet"]
+  },
+  {
+    "word": "WiFi",
+    "forbidden": ["internet", "sieć", "router", "hasło", "połączenie"]
+  },
+  {
+    "word": "Emoji",
+    "forbidden": ["buźka", "ikonka", "telefon", "symbol", "mina"]
+  },
+  {
+    "word": "GIF",
+    "forbidden": ["animacja", "obrazek", "krótki", "internet", "ruch"]
+  },
+  {
+    "word": "Vlog",
+    "forbidden": ["film", "YouTube", "kamera", "życie", "nagranie"]
+  },
+  {
+    "word": "Podcast",
+    "forbidden": ["audio", "słuchać", "internet", "program", "radio"]
+  },
+  {
+    "word": "YouTube",
+    "forbidden": ["film", "kanał", "wideo", "subskrypcja", "oglądać"]
+  },
+  {
+    "word": "Netflix",
+    "forbidden": ["serial", "film", "oglądać", "konto", "streaming"]
+  },
+  {
+    "word": "Serial",
+    "forbidden": ["odcinek", "telewizja", "film", "sezon", "aktor"]
+  },
+  {
+    "word": "Spoiler",
+    "forbidden": ["koniec", "film", "zdradzić", "fabuła", "informacja"]
+  },
+  {
+    "word": "Trend",
+    "forbidden": ["moda", "popularny", "internet", "aktualny", "wyzwanie"]
+  },
+  {
+    "word": "Viral",
+    "forbidden": ["popularny", "internet", "szybko", "wszyscy", "film"]
+  },
+  {
+    "word": "Challenge",
+    "forbidden": ["wyzwanie", "zadanie", "TikTok", "próba", "konkurs"]
+  },
+  {
+    "word": "Cringe",
+    "forbidden": ["żenada", "wstyd", "dziwne", "niekomfortowe", "reakcja"]
+  },
+  {
+    "word": "Slay",
+    "forbidden": ["świetnie", "wyglądać", "sukces", "moda", "styl"]
+  },
+  {
+    "word": "Flex",
+    "forbidden": ["chwalić", "pokazywać", "bogaty", "popisywać", "rzecz"]
+  },
+  {
+    "word": "Random",
+    "forbidden": ["losowy", "przypadek", "wybór", "niespodziewany", "dziwny"]
+  },
+  {
     "word": "Snapchat",
     "forbidden": ["zdjęcie", "filtr", "aplikacja", "znikające", "wiadomość"]
   },
