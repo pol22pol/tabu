@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TABU Mobile</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --card-border: rgba(255, 255, 255, 0.6);
+            
+            --primary: #7c3aed;
+            --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            --accent-blue: #0284c7;
+            
+            --success: #10b981;
+            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            
+            --danger: #f43f5e;
+            --danger-gradient: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            
+            --warning: #f59e0b;
+            --warning-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 12px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 95vh;
+            justify-content: center;
+        }
+
+        .view {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        /* Formularze */
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 700;
+            outline: none;
+        }
+
+        /* Stylizacja Steppera (+ i -) */
+        .number-stepper {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .stepper-btn {
+            background: #f1f5f9;
+            border: none;
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 900;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.1s;
+        }
+
+        .stepper-btn:active {
+            background: #e2e8f0;
+        }
+
+        .number-stepper input[type="number"] {
+            flex: 1;
+            border: none;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            outline: none;
+            -moz-appearance: textfield;
+        }
+
+        .number-stepper input[type="number"]::-webkit-outer-spin-button,
+        .number-stepper input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 130px;
+            overflow-y: auto;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 14px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .checkbox-item input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        /* HUD & Banery */
+        .team-banner {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .hud-header {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .hud-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 8px 4px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .hud-label {
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .hud-value {
+            font-size: 1.15rem;
+            font-weight: 900;
+        }
+
+        /* Główna Karta */
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            min-height: 280px;
+            background: #ffffff;
+        }
+
+        .main-word {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase !important;
+            word-break: break-word;
+        }
+
+        .taboo-badge {
+            background: #ffe4e6;
+            color: var(--danger);
+            font-size: 0.7rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid #fecdd3;
+        }
+
+        .taboo-list {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .taboo-list li {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-align: center;
+            color: #1e293b;
+            text-transform: uppercase !important;
+        }
+
+        /* Przyciski Akcji */
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .btn {
+            border: none;
+            padding: 16px 8px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.08s ease, filter 0.1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            filter: brightness(0.95);
+        }
+
+        .btn-taboo { background: var(--danger-gradient); }
+        .btn-skip { background: var(--warning-gradient); color: #ffffff; }
+        .btn-correct { background: var(--success-gradient); }
+        .btn-main { background: var(--primary-gradient); width: 100%; }
+        .btn-sub { background: #cbd5e1; color: #334155; width: 100%; margin-top: 6px; }
+
+        /* Historia */
+        .full-screen-card {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .history-list-full {
+            flex-grow: 1;
+            max-height: 55vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 12px 0;
+            padding-right: 4px;
+        }
+
+        .history-item {
+            background: #ffffff;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .scores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .team-box {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .team-box .name { font-size: 0.8rem; font-weight: 800; color: var(--text-muted); text-transform: uppercase; }
+        .team-box .pts { font-size: 1.8rem; font-weight: 900; color: var(--primary); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 24px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 10px; text-transform: uppercase; }
+        .modal-body { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="setup-view" class="view">
+        <div class="glass-card">
+            <div class="title">TABU GAME</div>
+            
+            <div class="form-group">
+                <label>Drużyna 1</label>
+                <input type="text" id="team1-input" value="DRUŻYNA A">
+            </div>
+
+            <div class="form-group">
+                <label>Drużyna 2</label>
+                <input type="text" id="team2-input" value="DRUŻYNA B">
+            </div>
+
+            <div class="form-group">
+                <label>Liczba rund w meczu</label>
+                <div class="number-stepper">
+                    <button class="stepper-btn" onclick="adjustValue('rounds-input', -1, 1, 20)">-</button>
+                    <input type="number" id="rounds-input" value="4" min="1" max="20">
+                    <button class="stepper-btn" onclick="adjustValue('rounds-input', 1, 1, 20)">+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Czas rundy (sekundy)</label>
+                <div class="number-stepper">
+                    <button class="stepper-btn" onclick="adjustValue('time-input', -5, 10, 300)">-</button>
+                    <input type="number" id="time-input" value="60" min="10" max="300" step="5">
+                    <button class="stepper-btn" onclick="adjustValue('time-input', 5, 10, 300)">+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Liczba pominięć na turę</label>
+                <div class="number-stepper">
+                    <button class="stepper-btn" onclick="adjustValue('skips-input', -1, 0, 10)">-</button>
+                    <input type="number" id="skips-input" value="3" min="0" max="10">
+                    <button class="stepper-btn" onclick="adjustValue('skips-input', 1, 0, 10)">+</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Kategorie</label>
+                <div class="checkbox-group" id="categories-list"></div>
+            </div>
+
+            <button class="btn btn-main" id="start-btn" onclick="saveSettingsAndStart()">START MECZU</button>
+            <button class="btn btn-sub" onclick="showHistoryView()">HISTORIA WYNIKÓW</button>
+        </div>
+    </div>
+
+    <div id="turn-view" class="view hidden">
+        <div class="glass-card" style="text-align: center;">
+            <div style="font-size: 0.75rem; font-weight: 900; color: var(--primary); letter-spacing: 2px;" id="turn-indicator">RUNDA 1 Z 4 (TURA 1/2)</div>
+            <h2 id="turn-title" style="margin: 12px 0 6px 0; font-size: 1.5rem; text-transform: uppercase;">PRZYGOTUJ SIĘ!</h2>
+            <p id="turn-desc" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;"></p>
+            <button class="btn btn-main" onclick="startTurn()">ROZPOCZNIJ TURĘ</button>
+        </div>
+
+        <div class="glass-card">
+            <div style="text-align: center; color: var(--text-muted); font-size: 0.7rem; font-weight: 800; letter-spacing: 1px;">WYNIKI MECZU</div>
+            <div class="scores-grid">
+                <div class="team-box">
+                    <div class="name" id="sb-team1-name">D1</div>
+                    <div class="pts" id="sb-team1-pts">0</div>
+                </div>
+                <div class="team-box">
+                    <div class="name" id="sb-team2-name">D2</div>
+                    <div class="pts" id="sb-team2-pts">0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-view" class="view hidden">
+        <div class="team-banner" id="current-team-label">DRUŻYNA A</div>
+
+        <div class="hud-header">
+            <div class="hud-box">
+                <span class="hud-label">Runda</span>
+                <span class="hud-value" id="turn-stat">1/4</span>
+            </div>
+            <div class="hud-box">
+                <span class="hud-label">Punkty</span>
+                <span class="hud-value" style="color: var(--success);" id="current-score">0</span>
+            </div>
+            <div class="hud-box">
+                <span class="hud-label">Pominięcia</span>
+                <span class="hud-value" style="color: var(--warning);" id="skips-left-hud">0</span>
+            </div>
+            <div class="hud-box">
+                <span class="hud-label">Czas</span>
+                <span class="hud-value" style="color: var(--danger);" id="timer">60s</span>
+            </div>
+        </div>
+
+        <div class="glass-card game-card">
+            <div class="main-word" id="main-word">---</div>
+            <div class="taboo-badge">Słowa Zakazane</div>
+            <ul class="taboo-list" id="taboo-list"></ul>
+        </div>
+
+        <div class="action-grid">
+            <button class="btn btn-taboo" onclick="handlePoint(-1)">TABU!</button>
+            <button class="btn btn-skip" id="skip-btn" onclick="handleSkip()">POMIŃ</button>
+            <button class="btn btn-correct" onclick="handlePoint(1)">TRAFIONE!</button>
+        </div>
+    </div>
+
+    <div id="end-view" class="view hidden">
+        <div class="glass-card" style="text-align: center;">
+            <div class="title" style="background: var(--success-gradient); -webkit-background-clip: text;">KONIEC MECZU!</div>
+            <h2 id="winner-label" style="margin-bottom: 20px; font-size: 1.3rem;">ZWYCIĘZCA: ---</h2>
+            
+            <div class="scores-grid" style="margin-bottom: 20px;">
+                <div class="team-box">
+                    <div class="name" id="end-team1-name">D1</div>
+                    <div class="pts" id="end-team1-pts">0</div>
+                </div>
+                <div class="team-box">
+                    <div class="name" id="end-team2-name">D2</div>
+                    <div class="pts" id="end-team2-pts">0</div>
+                </div>
+            </div>
+
+            <button class="btn btn-main" onclick="showSetupView()">MENU GŁÓWNE</button>
+        </div>
+    </div>
+
+    <div id="history-view" class="view hidden">
+        <div class="glass-card full-screen-card">
+            <div>
+                <div class="title" style="margin-bottom: 8px;">HISTORIA WYNIKÓW</div>
+                <div class="history-list-full" id="history-container"></div>
+            </div>
+            <div>
+                <button class="btn btn-sub" onclick="showSetupView()">POWRÓT</button>
+                <button class="btn btn-taboo" style="width:100%; margin-top:8px; font-size:0.75rem; padding: 12px;" onclick="clearHistory()">WYCZYŚĆ HISTORIĘ</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="custom-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+        <div class="modal-title" id="modal-title">KOMUNIKAT</div>
+        <div class="modal-body" id="modal-body">Treść komunikatu</div>
+        <button class="btn btn-main" onclick="closeModal()">OK</button>
+    </div>
+</div>
+
+<script>
+    const categoryFiles = [
+        { id: "ogolne", name: "OGÓLNE", file: "data/ogolne.json" },
+        { id: "popkultura", name: "POPKULTURA & FILM", file: "data/popkultura.json" },
+        { id: "technologia", name: "TECHNOLOGIA", file: "data/technologia.json" },
+        { id: "sport", name: "SPORT", file: "data/sport.json" },
+        { id: "geografia", name: "GEOGRAFIA", file: "data/geografia.json" },
+        { id: "jedzenie", name: "JEDZENIE & KUCHNIA", file: "data/jedzenie.json" }
+    ];
+
+    let availableCards = [];
+    let config = { rounds: 4, time: 60, skips: 3, team1: "DRUŻYNA A", team2: "DRUŻYNA B", selectedCategories: ["ogolne"] };
+    let scores = { team1: 0, team2: 0 };
+    
+    let currentRound = 1;
+    let currentSubTurn = 1; // 1 = Drużyna 1, 2 = Drużyna 2
+
+    let currentSkipsLeft = 0;
+    let currentRoundScore = 0;
+    let timeLeft = 0;
+    let timerInterval = null;
+    let activeCardsPool = [];
+    let modalCallback = null;
+
+    window.onload = function() {
+        loadSettings();
+        renderCategoriesList();
+    };
+
+    function adjustValue(inputId, delta, min, max) {
+        const input = document.getElementById(inputId);
+        let val = parseInt(input.value) || 0;
+        val += delta;
+        if (val < min) val = min;
+        if (val > max) val = max;
+        input.value = val;
+    }
+
+    function showModal(title, bodyText, callback = null) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-body').innerText = bodyText;
+        modalCallback = callback;
+        document.getElementById('custom-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('custom-modal').classList.add('hidden');
+        if (modalCallback) {
+            modalCallback();
+            modalCallback = null;
+        }
+    }
+
+    function renderCategoriesList() {
+        const container = document.getElementById('categories-list');
+        container.innerHTML = categoryFiles.map(cat => `
+            <label class="checkbox-item">
+                <input type="checkbox" value="${cat.id}" ${config.selectedCategories.includes(cat.id) ? 'checked' : ''}>
+                ${cat.name}
+            </label>
+        `).join('');
+    }
+
+    function loadSettings() {
+        const savedConfig = localStorage.getItem('taboo_config');
+        if (savedConfig) {
+            config = JSON.parse(savedConfig);
+            document.getElementById('team1-input').value = config.team1 || "DRUŻYNA A";
+            document.getElementById('team2-input').value = config.team2 || "DRUŻYNA B";
+            document.getElementById('rounds-input').value = config.rounds || 4;
+            document.getElementById('time-input').value = config.time || 60;
+            document.getElementById('skips-input').value = config.skips !== undefined ? config.skips : 3;
+        }
+    }
+
+    function saveSettings() {
+        config.team1 = (document.getElementById('team1-input').value || "DRUŻYNA A").toUpperCase();
+        config.team2 = (document.getElementById('team2-input').value || "DRUŻYNA B").toUpperCase();
+        config.rounds = parseInt(document.getElementById('rounds-input').value) || 4;
+        config.time = parseInt(document.getElementById('time-input').value) || 60;
+        config.skips = parseInt(document.getElementById('skips-input').value) || 0;
+        
+        const checkboxes = document.querySelectorAll('#categories-list input[type="checkbox"]:checked');
+        config.selectedCategories = Array.from(checkboxes).map(cb => cb.value);
+
+        if (config.selectedCategories.length === 0) {
+            showModal("BŁĄD", "Wybierz co najmniej jedną kategorię!");
+            return false;
+        }
+
+        localStorage.setItem('taboo_config', JSON.stringify(config));
+        return true;
+    }
+
+    async function loadCardsFromFiles() {
+        availableCards = [];
+        for (const catId of config.selectedCategories) {
+            const catObj = categoryFiles.find(c => c.id === catId);
+            if (catObj) {
+                try {
+                    const res = await fetch(catObj.file);
+                    const cards = await res.json();
+                    availableCards = availableCards.concat(cards);
+                } catch (e) {
+                    console.error("Błąd ładowania pliku: " + catObj.file, e);
+                }
+            }
+        }
+    }
+
+    async function saveSettingsAndStart() {
+        if (!saveSettings()) return;
+
+        await loadCardsFromFiles();
+
+        scores.team1 = 0;
+        scores.team2 = 0;
+        currentRound = 1;
+        currentSubTurn = 1;
+        activeCardsPool = [...availableCards];
+
+        updateScoreboardDisplay();
+        showTurnPrepView();
+    }
+
+    function showTurnPrepView() {
+        hideAllViews();
+        document.getElementById('turn-view').classList.remove('hidden');
+
+        const activeTeamName = (currentSubTurn === 1) ? config.team1 : config.team2;
+        document.getElementById('turn-indicator').innerText = `RUNDA ${currentRound} Z ${config.rounds} (TURA ${currentSubTurn}/2)`;
+        document.getElementById('turn-title').innerText = `PRZYGOTUJ SIĘ: ${activeTeamName}`;
+        document.getElementById('turn-desc').innerText = `Przekażcie telefon osobie opisującej z drużyny ${activeTeamName}.`;
+    }
+
+    function startTurn() {
+        currentRoundScore = 0;
+        currentSkipsLeft = config.skips;
+        timeLeft = config.time;
+
+        const activeTeamName = (currentSubTurn === 1) ? config.team1 : config.team2;
+        document.getElementById('current-team-label').innerText = activeTeamName;
+        document.getElementById('turn-stat').innerText = `${currentRound}/${config.rounds}`;
+        document.getElementById('current-score').innerText = currentRoundScore;
+        document.getElementById('skips-left-hud').innerText = currentSkipsLeft;
+        document.getElementById('timer').innerText = timeLeft + "s";
+
+        updateSkipButton();
+        hideAllViews();
+        document.getElementById('game-view').classList.remove('hidden');
+
+        nextCard();
+
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            document.getElementById('timer').innerText = timeLeft + "s";
+            if (timeLeft <= 0) {
+                endTurn();
+            }
+        }, 1000);
+    }
+
+    function nextCard() {
+        if (activeCardsPool.length === 0) {
+            activeCardsPool = [...availableCards];
+        }
+        const randomIndex = Math.floor(Math.random() * activeCardsPool.length);
+        const card = activeCardsPool.splice(randomIndex, 1)[0];
+
+        document.getElementById('main-word').innerText = card.word.toUpperCase();
+        document.getElementById('taboo-list').innerHTML = card.taboo.map(item => `<li>${item.toUpperCase()}</li>`).join('');
+    }
+
+    function handlePoint(points) {
+        currentRoundScore += points;
+        document.getElementById('current-score').innerText = currentRoundScore;
+        nextCard();
+    }
+
+    function handleSkip() {
+        if (currentSkipsLeft > 0) {
+            currentSkipsLeft--;
+            document.getElementById('skips-left-hud').innerText = currentSkipsLeft;
+            updateSkipButton();
+            nextCard();
+        }
+    }
+
+    function updateSkipButton() {
+        const skipBtn = document.getElementById('skip-btn');
+        if (currentSkipsLeft <= 0) {
+            skipBtn.style.opacity = "0.3";
+            skipBtn.style.pointerEvents = "none";
+        } else {
+            skipBtn.style.opacity = "1";
+            skipBtn.style.pointerEvents = "auto";
+        }
+    }
+
+    function endTurn() {
+        clearInterval(timerInterval);
+        
+        const activeTeamName = (currentSubTurn === 1) ? config.team1 : config.team2;
+
+        showModal(`KONIEC TURY: ${activeTeamName}`, `Zdobyte punkty: ${currentRoundScore}`, () => {
+            if (currentSubTurn === 1) {
+                scores.team1 += currentRoundScore;
+                currentSubTurn = 2;
+            } else {
+                scores.team2 += currentRoundScore;
+                currentSubTurn = 1;
+                currentRound++;
+            }
+
+            updateScoreboardDisplay();
+
+            if (currentRound <= config.rounds) {
+                showTurnPrepView();
+            } else {
+                endMatch();
+            }
+        });
+    }
+
+    function endMatch() {
+        hideAllViews();
+        document.getElementById('end-view').classList.remove('hidden');
+
+        document.getElementById('end-team1-name').innerText = config.team1;
+        document.getElementById('end-team1-pts').innerText = scores.team1;
+        document.getElementById('end-team2-name').innerText = config.team2;
+        document.getElementById('end-team2-pts').innerText = scores.team2;
+
+        let winninnerText = "";
+        if (scores.team1 > scores.team2) {
+            winninnerText = `ZWYCIĘZCA: ${config.team1}! 🏆`;
+        } else if (scores.team2 > scores.team1) {
+            winninnerText = `ZWYCIĘZCA: ${config.team2}! 🏆`;
+        } else {
+            winninnerText = "REMIS! 🤝";
+        }
+        document.getElementById('winner-label').innerText = winninnerText;
+
+        saveMatchToHistory(winninnerText);
+    }
+
+    function saveMatchToHistory(resultText) {
+        let history = JSON.parse(localStorage.getItem('taboo_history') || "[]");
+        const matchData = {
+            date: new Date().toLocaleDateString('pl-PL') + " " + new Date().toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'}),
+            team1: `${config.team1}: ${scores.team1} PKT`,
+            team2: `${config.team2}: ${scores.team2} PKT`,
+            result: resultText
+        };
+        history.unshift(matchData);
+        if (history.length > 20) history.pop();
+        localStorage.setItem('taboo_history', JSON.stringify(history));
+    }
+
+    function showHistoryView() {
+        hideAllViews();
+        document.getElementById('history-view').classList.remove('hidden');
+
+        const history = JSON.parse(localStorage.getItem('taboo_history') || "[]");
+        const container = document.getElementById('history-container');
+
+        if (history.length === 0) {
+            container.innerHTML = "<div style='text-align:center; color: var(--text-muted); padding:20px; font-size:0.9rem;'>BRAK HISTORII MECZÓW</div>";
+            return;
+        }
+
+        container.innerHTML = history.map(m => `
+            <div class="history-item">
+                <div>
+                    <div style="font-size:0.9rem; font-weight:800;">${m.team1} vs ${m.team2}</div>
+                    <div style="font-size:0.8rem; color: var(--primary); font-weight:700; margin-top:2px;">${m.result}</div>
+                </div>
+                <div style="font-size:0.75rem; color: var(--text-muted); font-weight:600;">${m.date}</div>
+            </div>
+        `).join('');
+    }
+
+    function clearHistory() {
+        showModal("WYCZYŚĆ HISTORIĘ", "Historia meczów została usunięta.", () => {
+            localStorage.removeItem('taboo_history');
+            showHistoryView();
+        });
+    }
+
+    function updateScoreboardDisplay() {
+        document.getElementById('sb-team1-name').innerText = config.team1;
+        document.getElementById('sb-team1-pts').innerText = scores.team1;
+        document.getElementById('sb-team2-name').innerText = config.team2;
+        document.getElementById('sb-team2-pts').innerText = scores.team2;
+    }
+
+    function showSetupView() {
+        hideAllViews();
+        document.getElementById('setup-view').classList.remove('hidden');
+    }
+
+    function hideAllViews() {
+        document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+    }
+</script>
+
+</body>
+</html>
