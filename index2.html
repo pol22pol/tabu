@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabu Game</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="header">
+      <div class="score-badge">Punkty: <span id="score-value">0</span></div>
+      <div class="timer-badge">Czas: <span id="timer-value">60</span>s</div>
+    </header>
+
+    <main id="card-container">
+      <!-- Karta renderowana dynamicznie przez JS -->
+    </main>
+
+    <footer class="actions">
+      <button id="btn-wrong" class="btn btn-danger">Błąd (-1)</button>
+      <button id="btn-skip" class="btn btn-warning">Pomiń</button>
+      <button id="btn-correct" class="btn btn-success">Trafione (+1)</button>
+    </footer>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
